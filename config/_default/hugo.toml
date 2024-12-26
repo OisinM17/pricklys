@@ -1,0 +1,20 @@
+baseURL = 'https://example.org/'
+languageCode = 'en'
+title = 'Prickly Phish writeups'
+theme = 'blowfish'
+
+#[params.author]
+#name = "Oisin Martin"
+#image = "img/author.jpg"
+#headline = "A generally awesome human"
+
+[homepage]
+  layout = "background" # valid options: page, profile, hero, card, background, custom
+  homepageImage = "/monitorsthree/lesgo.png" # used in: hero, and card
+  showRecent = true
+  showRecentItems = 3
+  showMoreLink = true
+  showMoreLinkDest = "/posts"
+  cardView = true
+  cardViewScreenWidth = false
+  layoutBackgroundBlur = true # only used when layout equals background

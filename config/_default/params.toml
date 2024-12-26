@@ -1,0 +1,24 @@
+
+#homepage.layout = "hero"
+colorScheme = "Ocean"
+
+enableSearch= true
+
+[homepage]
+  layout = "background" # valid options: page, profile, hero, card, background, custom
+#  homepageImage = "/monitorsthree/lesgo.png" # used in: hero, and card
+  showRecent = true
+  showRecentItems = 3
+  showMoreLink = true
+  showMoreLinkDest = "/posts"
+  cardView = true
+  cardViewScreenWidth = false
+  layoutBackgroundBlur = true # only used when layout equals background
+
+[article]
+ showDate = true
+ showBreadcrumbs = true
+ showReadingTime = false
+ showTableOfContents = true
+ showWordCount = true
+ showSummary = true

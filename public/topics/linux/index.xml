@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Prickly Phish writeups</title>
+    <link>http://localhost:1313/topics/linux/</link>
+    <description>Recent content in Linux on Prickly Phish writeups</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 </copyright>
+    <lastBuildDate>Sun, 29 Sep 2024 13:49:05 +0000</lastBuildDate><atom:link href="http://localhost:1313/topics/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blurry</title>
+      <link>http://localhost:1313/posts/htb/blurry/</link>
+      <pubDate>Sun, 29 Sep 2024 13:49:05 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/htb/blurry/</guid>
+      <description>Lorem ipsum</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/htb/blurry/featured.png" />
+    </item>
+    
+    <item>
+      <title>Boardlight</title>
+      <link>http://localhost:1313/posts/htb/boardlight/</link>
+      <pubDate>Sat, 21 Sep 2024 14:15:04 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/htb/boardlight/</guid>
+      <description>Boardlight # User # FFuF was doing this
+so i added -c -fs 15949
+ffuf -u http://board.htb -H &amp;#34;Host:FUZZ.board.htb&amp;#34; -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -c -fs 15949 found a poc for authenticated rev shell so had to get in
+Googled default creds which were admin/admin and it worked
+made a test page with a rev and ran it
+got foothold now onto priv esc
+db name = dolibarr db username = dolibarrowner db password = serverfun2$2023!</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/htb/boardlight/featured.png" />
+    </item>
+    
+  </channel>
+</rss>
